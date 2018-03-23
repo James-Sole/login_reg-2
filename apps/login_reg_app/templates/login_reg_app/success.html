@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <a href="/logout">logout</a>
+    <h1>Hello, {{username}}!</h1>
+
+    <h3>Your Trip Schedules</h3>
+    <div>
+      <table>
+        <thead>
+          <th>Destination</th>
+          <th>Travel Start Date</th>
+          <th>Travel end Date</th>
+          <th>Plan</th>
+        </thead>
+        <tbody>
+          {% for trip in my_trips %}
+          <tr>
+            <td><a href="/trips/{{trip.id}}">{{trip.destination}}</a></td>
+            <td>{{trip.start_date}}</td>
+            <td>{{trip.end_date}}</td>
+            <td>{{trip.description}}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+
+    <h3>Other User's Travel Plans</h3>
+    <div>
+      <table>
+        <thead>
+          <th>Name</th>
+          <th>Description</th>
+          <th>Travel Start Date</th>
+          <th>Travel End Date</th>
+          <th>Do You Want to Join?</th>
+        </thead>
+        <tbody>
+          {% for other_trip in other_trips%}
+          <tr>
+            <td>{{other_trip.name}}</td>
+            <td><a href="/trips/{{other_trip.id}}">{{other_trip.destination}}</a></td>
+            <td>{{other_trip.start_date}}</td>
+            <td>{{other_trip.end_date}}</td>
+            <td><a href="/join/{{other_trip.id}}">Join</a></td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+    <a href="/trips/add">Add Travel Plan</a>
+  </body>
+</html>
